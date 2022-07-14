@@ -1,4 +1,18 @@
 package co.com.sofka.zonatalentos.tourfranceapp.team.repository;
 
-public class TeamRepository {
+
+import co.com.sofka.zonatalentos.tourfranceapp.team.collection.Team;
+import org.springframework.data.mongodb.repository.ReactiveMongoRepository;
+import org.springframework.stereotype.Repository;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
+
+@Repository
+public interface TeamRepository extends ReactiveMongoRepository<Team, String> {
+
+    Mono<Team> findTeamByIdTeam(String idTeam);
+    Mono<Team> findTeamByNameTeam(String nameTeam);
+    Flux<Team> findAll();
+    Flux<Team> findTeamsByPartnerCountry(String country);
+
 }
