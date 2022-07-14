@@ -8,10 +8,10 @@ import java.util.function.Function;
 
 @Component
 public class CyclistMappers {
-    public Function<CyclistDTO, Cyclist> mapCyclistDTOToCyclist(){
+    public Function<CyclistDTO, Cyclist> mapCyclistDTOToCyclist(String id){
         return updateCyclist -> {
             var cyclist = new Cyclist();
-            cyclist.setIdCyclist(updateCyclist.getIdCyclist());
+            cyclist.setIdCyclist(id);
             cyclist.setName(updateCyclist.getName());
             cyclist.setNumCompetitor(updateCyclist.getNumCompetitor());
             cyclist.setNameTeam(updateCyclist.getNameTeam());

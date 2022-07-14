@@ -22,7 +22,7 @@ public class CreateCyclistUseCase implements SaveCyclist {
     @Override
     public Mono<String> apply(CyclistDTO cyclistDTO) {
         return cyclistRepository
-                .save(mappers.mapCyclistDTOToCyclist().apply(cyclistDTO))
+                .save(mappers.mapCyclistDTOToCyclist(null).apply(cyclistDTO))
                 .map(Cyclist::getIdCyclist);
     }
 }

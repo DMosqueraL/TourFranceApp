@@ -17,7 +17,6 @@ import static org.springframework.web.reactive.function.server.RequestPredicates
 import static org.springframework.web.reactive.function.server.RouterFunctions.route;
 
 @Configuration
-@RestController(value = "api/cyclist/")
 public class CreateCyclistRouter {
 
     @Bean
@@ -29,7 +28,7 @@ public class CreateCyclistRouter {
                                 .bodyValue(result));
 
         return route(
-                POST("/create").and(accept(MediaType.APPLICATION_JSON)),
+                POST("/cyclist/create").and(accept(MediaType.APPLICATION_JSON)),
                 request -> request.bodyToMono(CyclistDTO.class).flatMap(createCyclist)
         );
 
