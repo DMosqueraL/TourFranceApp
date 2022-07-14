@@ -3,7 +3,6 @@ package co.com.sofka.zonatalentos.tourfranceapp.cyclist.dto;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
 @NoArgsConstructor
 @Data
 public class CyclistDTO {
