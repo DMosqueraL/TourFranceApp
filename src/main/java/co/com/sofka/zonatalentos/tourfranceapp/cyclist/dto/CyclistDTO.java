@@ -1,10 +1,10 @@
 package co.com.sofka.zonatalentos.tourfranceapp.cyclist.dto;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-@Data
+
 @NoArgsConstructor
+@Data
 public class CyclistDTO {
     private String idCyclist;
     private String name;
