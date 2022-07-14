@@ -26,7 +26,7 @@ public class UpdateCyclistRouter {
                                 .bodyValue(result));
 
         return route(
-                PUT("/cyclist/update").and(accept(MediaType.APPLICATION_JSON)),
+                PUT("/cyclist/update/{id}").and(accept(MediaType.APPLICATION_JSON)),
                 request -> request.bodyToMono(CyclistDTO.class).flatMap(updateCyclist)
         );
     }
