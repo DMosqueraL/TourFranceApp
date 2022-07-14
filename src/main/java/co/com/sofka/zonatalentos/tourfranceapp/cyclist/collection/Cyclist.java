@@ -19,6 +19,6 @@ public class Cyclist {
     private String name;
     private String numCompetitor;
     private String nameTeam;
-    private String nacionality;
+    private String nationality;
 
 }

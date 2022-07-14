@@ -10,13 +10,13 @@ public class CyclistDTO {
     private String name;
     private String numCompetitor;
     private String nameTeam;
-    private String nacionality;
+    private String nationality;
 
     public CyclistDTO(String idCyclist, String name, String numCompetitor, String nameTeam, String nacionality) {
         this.idCyclist = idCyclist;
         this.name = name;
         this.numCompetitor = numCompetitor;
         this.nameTeam = nameTeam;
-        this.nacionality = nacionality;
+        this.nationality = nacionality;
     }
 }

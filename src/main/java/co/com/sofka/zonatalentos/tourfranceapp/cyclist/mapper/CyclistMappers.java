@@ -15,7 +15,7 @@ public class CyclistMappers {
             cyclist.setName(updateCyclist.getName());
             cyclist.setNumCompetitor(updateCyclist.getNumCompetitor());
             cyclist.setNameTeam(updateCyclist.getNameTeam());
-            cyclist.setNacionality(updateCyclist.getNacionality());
+            cyclist.setNationality(updateCyclist.getNationality());
 
             return cyclist;
         };
@@ -27,7 +27,7 @@ public class CyclistMappers {
                 entity.getName(),
                 entity.getNumCompetitor(),
                 entity.getNameTeam(),
-                entity.getNacionality()
+                entity.getNationality()
         );
     }
 }
