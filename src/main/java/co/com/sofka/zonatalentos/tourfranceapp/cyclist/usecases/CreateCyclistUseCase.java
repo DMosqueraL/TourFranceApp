@@ -20,9 +20,9 @@ public class CreateCyclistUseCase implements SaveCyclist {
         this.mappers = mappers;
     }
     @Override
-    public Mono<String> apply(CyclistDTO cyclistDTO) {
+    public Mono<CyclistDTO> apply(CyclistDTO cyclistDTO) {
         return cyclistRepository
                 .save(mappers.mapCyclistDTOToCyclist(null).apply(cyclistDTO))
-                .map(Cyclist::getIdCyclist);
+                .map(mappers.mapCyclistToCyclistDTO());
     }
 }

@@ -22,7 +22,7 @@ public class CreateCyclistRouter {
         Function<CyclistDTO, Mono<ServerResponse>> createCyclist = cyclistDTO ->
                 createCyclistUseCase.apply(cyclistDTO)
                         .flatMap(result -> ServerResponse.ok()
-                                .contentType(MediaType.TEXT_PLAIN)
+                                .contentType(MediaType.APPLICATION_JSON)
                                 .bodyValue(result));
 
         return route(

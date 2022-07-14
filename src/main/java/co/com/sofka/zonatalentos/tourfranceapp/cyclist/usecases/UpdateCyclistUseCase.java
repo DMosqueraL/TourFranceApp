@@ -22,10 +22,10 @@ public class UpdateCyclistUseCase implements SaveCyclist {
         this.mappers = mappers;
     }
     @Override
-    public Mono<String> apply(CyclistDTO cyclistDTO) {
-        Objects.requireNonNull(cyclistDTO.getIdCyclist(), "Id of cyclist is required");
+    public Mono<CyclistDTO> apply(CyclistDTO cyclistDTO) {
+
         return cyclistRepository
                 .save(mappers.mapCyclistDTOToCyclist(cyclistDTO.getIdCyclist()).apply(cyclistDTO))
-                .map(Cyclist::getIdCyclist);
+                .map(mappers.mapCyclistToCyclistDTO());
     }
 }

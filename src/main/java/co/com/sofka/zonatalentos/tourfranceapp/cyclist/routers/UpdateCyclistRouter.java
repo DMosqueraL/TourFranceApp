@@ -22,11 +22,11 @@ public class UpdateCyclistRouter {
         Function<CyclistDTO, Mono<ServerResponse>> updateCyclist = cyclistDTO ->
                 updateCyclistUseCase.apply(cyclistDTO)
                         .flatMap(result -> ServerResponse.ok()
-                                .contentType(MediaType.TEXT_PLAIN)
+                                .contentType(MediaType.APPLICATION_JSON)
                                 .bodyValue(result));
 
         return route(
-                PUT("/cyclist/update/{id}").and(accept(MediaType.APPLICATION_JSON)),
+                PUT("/cyclist/update").and(accept(MediaType.APPLICATION_JSON)),
                 request -> request.bodyToMono(CyclistDTO.class).flatMap(updateCyclist)
         );
     }

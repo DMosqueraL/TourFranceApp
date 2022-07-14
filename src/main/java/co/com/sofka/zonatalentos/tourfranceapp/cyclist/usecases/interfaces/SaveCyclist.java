@@ -7,5 +7,5 @@ import javax.validation.Valid;
 
 @FunctionalInterface
 public interface SaveCyclist {
-    Mono<String> apply(@Valid CyclistDTO cyclistDTO);
+    Mono<CyclistDTO> apply(@Valid CyclistDTO cyclistDTO);
 }
