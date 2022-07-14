@@ -8,7 +8,6 @@ import reactor.core.publisher.Mono;
 
 @Repository
 public interface CyclistRepository extends ReactiveMongoRepository<Cyclist, String> {
-    Mono<Cyclist> findCyclistById(String id);
     Mono<Cyclist> findCyclistByNumCompetitor(String number);
     Flux<Cyclist> findAll();
     Flux<Cyclist> findCyclistsByNationality(String nationality);
