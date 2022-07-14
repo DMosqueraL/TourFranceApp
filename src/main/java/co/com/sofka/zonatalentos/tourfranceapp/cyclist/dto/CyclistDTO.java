@@ -1,6 +1,7 @@
 package co.com.sofka.zonatalentos.tourfranceapp.cyclist.dto;
 
-import lombok.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 
 @NoArgsConstructor
