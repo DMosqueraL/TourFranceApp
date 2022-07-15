@@ -9,9 +9,7 @@ import reactor.core.publisher.Mono;
 
 @Repository
 public interface TeamRepository extends ReactiveMongoRepository<Team, String> {
-
-    Mono<Team> findTeamByIdTeam(String idTeam);
-    Mono<Team> findTeamByNameTeam(String nameTeam);
+    Mono<Team> findTeamByCodeTeam(String codeTeam);
     Flux<Team> findAll();
     Flux<Team> findTeamsByPartnerCountry(String country);
 

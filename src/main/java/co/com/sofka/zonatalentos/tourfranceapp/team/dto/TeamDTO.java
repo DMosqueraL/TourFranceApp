@@ -1,7 +1,6 @@
 package co.com.sofka.zonatalentos.tourfranceapp.team.dto;
 
 import co.com.sofka.zonatalentos.tourfranceapp.cyclist.collection.Cyclist;
-import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

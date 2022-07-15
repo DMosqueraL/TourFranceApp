@@ -8,14 +8,13 @@ import java.util.function.Function;
 
 @Component
 public class TeamMappers {
-    public Function<TeamDTO, Team> mapTeamDTOToTeam(){
+    public Function<TeamDTO, Team> mapTeamDTOToTeam(String id){
         return updateTeam -> {
             var team = new Team();
-            team.setIdTeam(updateTeam.getIdTeam());
+            team.setIdTeam(id);
             team.setNameTeam(updateTeam.getNameTeam());
             team.setCodeTeam(updateTeam.getCodeTeam());
             team.setPartnerCountry(updateTeam.getPartnerCountry());
-            team.setCyclistsTeam(updateTeam.getCyclistsTeam());
 
             return  team;
         };
@@ -26,8 +25,7 @@ public class TeamMappers {
                 entity.getIdTeam(),
                 entity.getNameTeam(),
                 entity.getCodeTeam(),
-                entity.getPartnerCountry(),
-                entity.getCyclistsTeam()
+                entity.getPartnerCountry()
         );
     }
 }
