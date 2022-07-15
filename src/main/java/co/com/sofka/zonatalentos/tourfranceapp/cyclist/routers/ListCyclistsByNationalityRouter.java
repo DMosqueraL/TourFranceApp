@@ -2,7 +2,6 @@ package co.com.sofka.zonatalentos.tourfranceapp.cyclist.routers;
 
 
 import co.com.sofka.zonatalentos.tourfranceapp.cyclist.dto.CyclistDTO;
-import co.com.sofka.zonatalentos.tourfranceapp.cyclist.usecases.ListCyclistsByNameTeamUseCase;
 import co.com.sofka.zonatalentos.tourfranceapp.cyclist.usecases.ListCyclistsByNationalityUseCase;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,7 +17,7 @@ import static org.springframework.web.reactive.function.server.RouterFunctions.r
 @Configuration
 public class ListCyclistsByNationalityRouter {
     @Bean
-    public RouterFunction<ServerResponse> ListCyclistsByNationality(ListCyclistsByNationalityUseCase listCyclistsByNationalityUseCase){
+    public RouterFunction<ServerResponse> listCyclistsByNationality(ListCyclistsByNationalityUseCase listCyclistsByNationalityUseCase){
         return route(
                 GET("/cyclist/list/{nationality}").and(accept(MediaType.APPLICATION_JSON)),
                 request -> ServerResponse.ok()
