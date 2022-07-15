@@ -19,11 +19,11 @@ public class GetTeamByCodeRouter {
     @Bean
     public RouterFunction<ServerResponse> getTeamByCode(GetTeamByCodeUseCase getTeamByCodeUseCase){
         return route(
-                GET("/teamget/{codeTeam}").and(accept(MediaType.APPLICATION_JSON)),
+                GET("/team/{codeTeam}").and(accept(MediaType.APPLICATION_JSON)),
                 request -> ServerResponse.ok()
                         .contentType(MediaType.APPLICATION_JSON)
                         .body(BodyInserters.fromPublisher(getTeamByCodeUseCase
-                                .apply(request.pathVariable("code")),
+                                .apply(request.pathVariable("codeTeam")),
                                 TeamDTO.class))
         );
     }
