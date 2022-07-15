@@ -1,7 +1,6 @@
 package co.com.sofka.zonatalentos.tourfranceapp.team.router;
 
 import co.com.sofka.zonatalentos.tourfranceapp.team.dto.TeamDTO;
-import co.com.sofka.zonatalentos.tourfranceapp.team.usecases.CreateTeamUseCase;
 import co.com.sofka.zonatalentos.tourfranceapp.team.usecases.UpdateTeamUseCase;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;

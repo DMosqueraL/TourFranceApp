@@ -3,7 +3,6 @@ package co.com.sofka.zonatalentos.tourfranceapp.usecases.cyclist;
 import co.com.sofka.zonatalentos.tourfranceapp.cyclist.collection.Cyclist;
 import co.com.sofka.zonatalentos.tourfranceapp.cyclist.mapper.CyclistMappers;
 import co.com.sofka.zonatalentos.tourfranceapp.cyclist.repository.CyclistRepository;
-import co.com.sofka.zonatalentos.tourfranceapp.cyclist.usecases.CreateCyclistUseCase;
 import co.com.sofka.zonatalentos.tourfranceapp.cyclist.usecases.GetCyclistUseCase;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -11,7 +10,6 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import reactor.core.publisher.Mono;
 import reactor.test.StepVerifier;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 class GetCyclistUseCaseTest {

@@ -3,33 +3,38 @@ package co.com.sofka.zonatalentos.tourfranceapp.usecases.cyclist;
 import co.com.sofka.zonatalentos.tourfranceapp.cyclist.collection.Cyclist;
 import co.com.sofka.zonatalentos.tourfranceapp.cyclist.mapper.CyclistMappers;
 import co.com.sofka.zonatalentos.tourfranceapp.cyclist.repository.CyclistRepository;
-import co.com.sofka.zonatalentos.tourfranceapp.cyclist.usecases.DeleteCyclistUseCase;
+import co.com.sofka.zonatalentos.tourfranceapp.cyclist.usecases.ListCyclistsByNationalityUseCase;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import reactor.test.StepVerifier;
 
 import static org.mockito.Mockito.*;
 
-class DeleteCyclistUseCaseTest {
+
+class ListCyclistsByNationalityUseCaseTest {
 
     @MockBean
     CyclistRepository cyclistRepository;
 
     @MockBean
-    DeleteCyclistUseCase deleteCyclistUseCase;
+    ListCyclistsByNationalityUseCase listCyclistsByNationalityUseCase;
 
     CyclistMappers mappers = new CyclistMappers();
 
     @BeforeEach
     void setUp() {
         cyclistRepository = mock(CyclistRepository.class);
-        deleteCyclistUseCase = new DeleteCyclistUseCase(cyclistRepository);
+        listCyclistsByNationalityUseCase = new ListCyclistsByNationalityUseCase(
+                cyclistRepository, mappers
+        );
     }
 
     @Test
-    void deleteCyclistValidationTest(){
+    void listCyclistsByNationalityValidationTest() {
+
         var cyclist = new Cyclist();
         cyclist.setIdCyclist("XXXXXXXXXX");
         cyclist.setName("Doris Mosquera");
@@ -37,14 +42,18 @@ class DeleteCyclistUseCaseTest {
         cyclist.setNameTeam("Sofka");
         cyclist.setNationality("Colombia");
 
-        Mono.just(cyclist).flatMap(cyclistRepository::save).subscribe();
+        var cyclistDTO = mappers.mapCyclistToCyclistDTO().apply(cyclist);
 
-        when(cyclistRepository.deleteById(cyclist.getIdCyclist())).thenReturn(Mono.empty());
+        when(cyclistRepository.save(cyclist)).thenReturn(Mono.just(cyclist));
 
-        StepVerifier.create(deleteCyclistUseCase.apply(cyclist.getIdCyclist()))
+        when(cyclistRepository.findCyclistsByNationality(cyclist.getNationality())).thenReturn(Flux.just(cyclist));
+
+        StepVerifier.create(listCyclistsByNationalityUseCase
+                .apply(cyclist.getNationality()))
                 .expectSubscription()
+                .expectNext(cyclistDTO)
                 .verifyComplete();
 
-        verify(cyclistRepository).deleteById(cyclist.getIdCyclist());
+        verify(cyclistRepository).findCyclistsByNameTeam(cyclist.getNationality());
     }
 }

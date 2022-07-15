@@ -3,8 +3,6 @@ package co.com.sofka.zonatalentos.tourfranceapp.team.router;
 import co.com.sofka.zonatalentos.tourfranceapp.team.dto.TeamDTO;
 import co.com.sofka.zonatalentos.tourfranceapp.team.usecases.ListTeamsUseCase;
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.Parameter;
-import io.swagger.v3.oas.annotations.enums.ParameterIn;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import org.springdoc.core.annotations.RouterOperation;
 import org.springframework.context.annotation.Bean;

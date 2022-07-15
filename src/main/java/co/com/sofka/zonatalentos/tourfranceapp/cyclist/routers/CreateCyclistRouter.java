@@ -2,7 +2,6 @@ package co.com.sofka.zonatalentos.tourfranceapp.cyclist.routers;
 
 import co.com.sofka.zonatalentos.tourfranceapp.cyclist.dto.CyclistDTO;
 import co.com.sofka.zonatalentos.tourfranceapp.cyclist.usecases.CreateCyclistUseCase;
-import co.com.sofka.zonatalentos.tourfranceapp.team.usecases.CreateTeamUseCase;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import org.springdoc.core.annotations.RouterOperation;
