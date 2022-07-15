@@ -3,33 +3,37 @@ package co.com.sofka.zonatalentos.tourfranceapp.usecases.cyclist;
 import co.com.sofka.zonatalentos.tourfranceapp.cyclist.collection.Cyclist;
 import co.com.sofka.zonatalentos.tourfranceapp.cyclist.mapper.CyclistMappers;
 import co.com.sofka.zonatalentos.tourfranceapp.cyclist.repository.CyclistRepository;
-import co.com.sofka.zonatalentos.tourfranceapp.cyclist.usecases.CreateCyclistUseCase;
-import co.com.sofka.zonatalentos.tourfranceapp.cyclist.usecases.GetCyclistUseCase;
+import co.com.sofka.zonatalentos.tourfranceapp.cyclist.usecases.ListCyclistsByNameTeamUseCase;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import reactor.test.StepVerifier;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-class GetCyclistUseCaseTest {
+class ListCyclistsByNameTeamUseCaseTest {
 
     @MockBean
     CyclistRepository cyclistRepository;
+
     @MockBean
-    GetCyclistUseCase getCyclistUseCase;
+    ListCyclistsByNameTeamUseCase listCyclistsByNameTeamUseCase;
+
     CyclistMappers mappers = new CyclistMappers();
 
     @BeforeEach
     void setUp() {
         cyclistRepository = mock(CyclistRepository.class);
-        getCyclistUseCase = new GetCyclistUseCase(cyclistRepository, mappers);
+        listCyclistsByNameTeamUseCase = new ListCyclistsByNameTeamUseCase(
+                cyclistRepository, mappers
+        );
     }
 
     @Test
-    void getCyclistValidationTest() {
+    void listCyclistsByNameTeamValidationTest() {
 
         var cyclist = new Cyclist();
         cyclist.setIdCyclist("XXXXXXXXXX");
@@ -40,13 +44,15 @@ class GetCyclistUseCaseTest {
 
         var cyclistDTO = mappers.mapCyclistToCyclistDTO().apply(cyclist);
 
-        when(cyclistRepository.findById(cyclist.getIdCyclist())).thenReturn(Mono.just(cyclist));
+        when(cyclistRepository.save(cyclist)).thenReturn(Mono.just(cyclist));
 
-        StepVerifier.create(getCyclistUseCase.apply(cyclist.getIdCyclist()))
+        when(cyclistRepository.findCyclistsByNameTeam(cyclist.getNameTeam())).thenReturn(Flux.just(cyclist));
+
+        StepVerifier.create(listCyclistsByNameTeamUseCase.apply(cyclist.getNameTeam()))
                 .expectSubscription()
                 .expectNext(cyclistDTO)
                 .verifyComplete();
 
-        verify(cyclistRepository).findById(cyclist.getIdCyclist());
+        verify(cyclistRepository).findCyclistsByNameTeam(cyclist.getNameTeam());
     }
 }
