@@ -20,13 +20,14 @@ public class TeamDTO {
     @NotBlank
     private String nameTeam;
     @NotBlank
+    @Indexed(unique = true)
+    @Size(min = 1, max=3)
     private String codeTeam;
     @NotBlank
     private String partnerCountry;
 
-    @NotBlank
-    @Indexed(unique = true)
-    @Size(min = 1, max=3)
+    //@NotBlank
+    //@Size(max=8)
     private Set<Cyclist> cyclistsTeam;
 
     public TeamDTO(String idTeam, String nameTeam, String codeTeam, String partnerCountry) {
