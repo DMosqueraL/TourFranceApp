@@ -2,6 +2,10 @@ package co.com.sofka.zonatalentos.tourfranceapp.cyclist.routers;
 
 import co.com.sofka.zonatalentos.tourfranceapp.cyclist.dto.CyclistDTO;
 import co.com.sofka.zonatalentos.tourfranceapp.cyclist.usecases.CreateCyclistUseCase;
+import co.com.sofka.zonatalentos.tourfranceapp.team.usecases.CreateTeamUseCase;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import org.springdoc.core.annotations.RouterOperation;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
@@ -18,6 +22,12 @@ import static org.springframework.web.reactive.function.server.RouterFunctions.r
 @Configuration
 public class CreateCyclistRouter {
     @Bean
+    @RouterOperation(beanClass = CreateCyclistUseCase.class, beanMethod = "apply", operation = @Operation(
+            operationId = "createCyclist", summary = "- Create Cyclist", tags = {
+            "Cyclist"}, responses = {
+            @ApiResponse(responseCode = "200", description = "Successful operation"),
+            @ApiResponse(responseCode = "400", description = "Invalid parameters in body supplied"),
+            @ApiResponse(responseCode = "404", description = "Cyclist not found")}))
     public RouterFunction<ServerResponse> createCyclist(CreateCyclistUseCase createCyclistUseCase){
         Function<CyclistDTO, Mono<ServerResponse>> createCyclist = cyclistDTO ->
                 createCyclistUseCase.apply(cyclistDTO)

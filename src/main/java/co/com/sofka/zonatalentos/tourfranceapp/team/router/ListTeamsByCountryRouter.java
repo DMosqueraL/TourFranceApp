@@ -2,6 +2,11 @@ package co.com.sofka.zonatalentos.tourfranceapp.team.router;
 
 import co.com.sofka.zonatalentos.tourfranceapp.team.dto.TeamDTO;
 import co.com.sofka.zonatalentos.tourfranceapp.team.usecases.ListTeamsByCountryUseCase;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.enums.ParameterIn;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import org.springdoc.core.annotations.RouterOperation;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
@@ -17,6 +22,12 @@ import static org.springframework.web.reactive.function.server.RouterFunctions.r
 public class ListTeamsByCountryRouter {
 
     @Bean
+    @RouterOperation(operation = @Operation(operationId = "apply", summary = "- Get Teams by Country", tags = {"Team"},
+            parameters = {@Parameter(in = ParameterIn.PATH, name = "country", description = "Get Teams by Country")},
+            responses = {
+                    @ApiResponse(responseCode = "200", description = "Successful operation"),
+                    @ApiResponse(responseCode = "400", description = "Invalid parameters in body supplied"),
+                    @ApiResponse(responseCode = "404", description = "Team not found")}))
     public RouterFunction<ServerResponse> listTeamsByCountry(ListTeamsByCountryUseCase listTeamsByCountryUseCase){
         return route(
                 GET("teams/{country}").and(accept(MediaType.APPLICATION_JSON)),
