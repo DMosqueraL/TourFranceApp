@@ -54,6 +54,6 @@ class ListCyclistsByNationalityUseCaseTest {
                 .expectNext(cyclistDTO)
                 .verifyComplete();
 
-        verify(cyclistRepository).findCyclistsByNameTeam(cyclist.getNationality());
+        verify(cyclistRepository).findCyclistsByNationality(cyclist.getNationality());
     }
 }
