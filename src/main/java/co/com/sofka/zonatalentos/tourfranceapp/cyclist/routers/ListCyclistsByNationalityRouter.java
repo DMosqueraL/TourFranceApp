@@ -19,7 +19,7 @@ public class ListCyclistsByNationalityRouter {
     @Bean
     public RouterFunction<ServerResponse> listCyclistsByNationality(ListCyclistsByNationalityUseCase listCyclistsByNationalityUseCase){
         return route(
-                GET("/cyclist/list/{nationality}").and(accept(MediaType.APPLICATION_JSON)),
+                GET("/cyclistlist/{nationality}").and(accept(MediaType.APPLICATION_JSON)),
                 request -> ServerResponse.ok()
                         .contentType(MediaType.APPLICATION_JSON)
                         .body(BodyInserters.fromPublisher(listCyclistsByNationalityUseCase
