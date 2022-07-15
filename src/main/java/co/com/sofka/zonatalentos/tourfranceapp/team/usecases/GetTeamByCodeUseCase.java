@@ -11,13 +11,13 @@ import java.util.function.Function;
 
 @Service
 @Validated
-public class ListTeamsByCodeUseCase implements Function<String, Mono<TeamDTO>> {
+public class GetTeamByCodeUseCase implements Function<String, Mono<TeamDTO>> {
 
     private final TeamRepository teamRepository;
     private final TeamMappers mappers;
 
 
-    public ListTeamsByCodeUseCase(TeamRepository teamRepository, TeamMappers mappers) {
+    public GetTeamByCodeUseCase(TeamRepository teamRepository, TeamMappers mappers) {
         this.teamRepository = teamRepository;
         this.mappers = mappers;
     }

@@ -1,7 +1,7 @@
-package co.com.sofka.zonatalentos.tourfranceapp.cyclist.routers;
+package co.com.sofka.zonatalentos.tourfranceapp.team.router;
 
-import co.com.sofka.zonatalentos.tourfranceapp.cyclist.dto.CyclistDTO;
-import co.com.sofka.zonatalentos.tourfranceapp.cyclist.usecases.ListCyclistsByNameTeamUseCase;
+import co.com.sofka.zonatalentos.tourfranceapp.team.dto.TeamDTO;
+import co.com.sofka.zonatalentos.tourfranceapp.team.usecases.GetTeamByCodeUseCase;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
@@ -14,17 +14,17 @@ import static org.springframework.web.reactive.function.server.RequestPredicates
 import static org.springframework.web.reactive.function.server.RouterFunctions.route;
 
 @Configuration
-public class ListCyclistsByNameTeamRouter {
+public class GetTeamByCodeRouter {
 
     @Bean
-    public RouterFunction<ServerResponse> listCyclistsByNameTeam(ListCyclistsByNameTeamUseCase listCyclistsByNameTeamUseCase){
+    public RouterFunction<ServerResponse> getTeamByCode(GetTeamByCodeUseCase getTeamByCodeUseCase){
         return route(
-                GET("/cyclist/list/{nameTeam}").and(accept(MediaType.APPLICATION_JSON)),
+                GET("/teamget/{codeTeam}").and(accept(MediaType.APPLICATION_JSON)),
                 request -> ServerResponse.ok()
                         .contentType(MediaType.APPLICATION_JSON)
-                        .body(BodyInserters.fromPublisher(listCyclistsByNameTeamUseCase
-                                .apply(request.pathVariable("nameTeam")),
-                                CyclistDTO.class))
+                        .body(BodyInserters.fromPublisher(getTeamByCodeUseCase
+                                .apply(request.pathVariable("code")),
+                                TeamDTO.class))
         );
     }
 }
